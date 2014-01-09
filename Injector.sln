@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Injector", "Injector\Injector.csproj", "{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hook", "Hook\Hook.vcxproj", "{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Win32.ActiveCfg = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|Win32.Build.0 = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|x86.ActiveCfg = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Debug|x86.Build.0 = Debug|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Win32.ActiveCfg = Release|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|Win32.Build.0 = Release|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|x86.ActiveCfg = Release|x86
+		{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}.Release|x86.Build.0 = Release|x86
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|Win32.Build.0 = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|x86.ActiveCfg = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Debug|x86.Build.0 = Debug|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|Any CPU.ActiveCfg = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|Win32.ActiveCfg = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|Win32.Build.0 = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|x86.ActiveCfg = Release|Win32
+		{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
