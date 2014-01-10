@@ -13,6 +13,13 @@ namespace Injector
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Holds custom messages.
+        /// </summary>
+        const uint UM_DLL = 0x0400;
+        const uint UM_CLASS = UM_DLL + 1;
+        const uint UM_METHOD = UM_DLL + 2;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public MainForm()
@@ -144,12 +151,14 @@ namespace Injector
         }
 
         /// <summary>
-        /// Injects a native Dll into a 32-Bit process. ONLY WORKS OF COMPILED AS x86!
+        /// Injects a native or managed Dll into a 32-Bit process. ONLY WORKS OF COMPILED AS x86!
         /// </summary>
         /// <param name="targetProcess">The target process.</param>
         /// <param name="dllPath">The path to the native Dll.</param>
-        bool InjectDll(Process targetProcess, string dllPath)
+        bool InjectDll(Process targetProcess, string dllPath, bool native = true)
         {
+
+
             try
             {
                 //STEP 1

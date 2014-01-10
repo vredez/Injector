@@ -51,6 +51,10 @@ namespace Injector
         [DllImport("kernel32")]
         public static extern uint ResumeThread(IntPtr hThread);
 
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32", SetLastError = true)]
+        public static extern bool PostThreadMessage(uint threadId, uint msg, UIntPtr wParam, IntPtr lParam);
+
         [Flags]
         public enum ProcessAccess
         {

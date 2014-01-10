@@ -38,11 +38,11 @@
             this.button_injectload = new System.Windows.Forms.Button();
             this.tabControl_mode = new System.Windows.Forms.TabControl();
             this.tabPage_inject = new System.Windows.Forms.TabPage();
-            this.tabPage_load = new System.Windows.Forms.TabPage();
             this.button_refresh = new System.Windows.Forms.Button();
-            this.label_exe = new System.Windows.Forms.Label();
-            this.textBox_exepath = new System.Windows.Forms.TextBox();
+            this.tabPage_load = new System.Windows.Forms.TabPage();
             this.button_exepath = new System.Windows.Forms.Button();
+            this.textBox_exepath = new System.Windows.Forms.TextBox();
+            this.label_exe = new System.Windows.Forms.Label();
             this.groupBox_dll.SuspendLayout();
             this.tabControl_mode.SuspendLayout();
             this.tabPage_inject.SuspendLayout();
@@ -158,6 +158,18 @@
             this.tabPage_inject.TabIndex = 0;
             this.tabPage_inject.Text = "Inject";
             // 
+            // button_refresh
+            // 
+            this.button_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_refresh.Location = new System.Drawing.Point(6, 216);
+            this.button_refresh.Name = "button_refresh";
+            this.button_refresh.Size = new System.Drawing.Size(429, 23);
+            this.button_refresh.TabIndex = 1;
+            this.button_refresh.Text = "Refresh";
+            this.button_refresh.UseVisualStyleBackColor = true;
+            this.button_refresh.Click += new System.EventHandler(this.OnButtonClick);
+            // 
             // tabPage_load
             // 
             this.tabPage_load.BackColor = System.Drawing.Color.White;
@@ -171,26 +183,16 @@
             this.tabPage_load.TabIndex = 1;
             this.tabPage_load.Text = "Load";
             // 
-            // button_refresh
+            // button_exepath
             // 
-            this.button_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_refresh.Location = new System.Drawing.Point(6, 216);
-            this.button_refresh.Name = "button_refresh";
-            this.button_refresh.Size = new System.Drawing.Size(429, 23);
-            this.button_refresh.TabIndex = 1;
-            this.button_refresh.Text = "Refresh";
-            this.button_refresh.UseVisualStyleBackColor = true;
-            this.button_refresh.Click += new System.EventHandler(this.OnButtonClick);
-            // 
-            // label_exe
-            // 
-            this.label_exe.AutoSize = true;
-            this.label_exe.Location = new System.Drawing.Point(6, 9);
-            this.label_exe.Name = "label_exe";
-            this.label_exe.Size = new System.Drawing.Size(65, 13);
-            this.label_exe.TabIndex = 0;
-            this.label_exe.Text = "Executable:";
+            this.button_exepath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_exepath.Location = new System.Drawing.Point(403, 34);
+            this.button_exepath.Name = "button_exepath";
+            this.button_exepath.Size = new System.Drawing.Size(32, 19);
+            this.button_exepath.TabIndex = 3;
+            this.button_exepath.Text = "...";
+            this.button_exepath.UseVisualStyleBackColor = true;
+            this.button_exepath.Click += new System.EventHandler(this.OnButtonClick);
             // 
             // textBox_exepath
             // 
@@ -205,16 +207,14 @@
             this.textBox_exepath.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
             this.textBox_exepath.DragOver += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
             // 
-            // button_exepath
+            // label_exe
             // 
-            this.button_exepath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exepath.Location = new System.Drawing.Point(403, 34);
-            this.button_exepath.Name = "button_exepath";
-            this.button_exepath.Size = new System.Drawing.Size(32, 19);
-            this.button_exepath.TabIndex = 3;
-            this.button_exepath.Text = "...";
-            this.button_exepath.UseVisualStyleBackColor = true;
-            this.button_exepath.Click += new System.EventHandler(this.OnButtonClick);
+            this.label_exe.AutoSize = true;
+            this.label_exe.Location = new System.Drawing.Point(6, 9);
+            this.label_exe.Name = "label_exe";
+            this.label_exe.Size = new System.Drawing.Size(65, 13);
+            this.label_exe.TabIndex = 0;
+            this.label_exe.Text = "Executable:";
             // 
             // MainForm
             // 
