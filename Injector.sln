@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Injector", "Injector\Injector.csproj", "{5CF4EF22-C1A9-41DF-BCFB-F25771D9F614}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FAFC0C1B-49B8-46DF-8F87-396E410F7C09} = {FAFC0C1B-49B8-46DF-8F87-396E410F7C09}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hook", "Hook\Hook.vcxproj", "{BB1045A3-FF05-4CF3-A6C5-1DCC801807A4}"
 EndProject

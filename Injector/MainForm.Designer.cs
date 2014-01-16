@@ -43,10 +43,20 @@
             this.button_exepath = new System.Windows.Forms.Button();
             this.textBox_exepath = new System.Windows.Forms.TextBox();
             this.label_exe = new System.Windows.Forms.Label();
+            this.tabPage_assemblytype = new System.Windows.Forms.TabPage();
+            this.groupBox_argument = new System.Windows.Forms.GroupBox();
+            this.groupBox_startmethod = new System.Windows.Forms.GroupBox();
+            this.listBox_method = new System.Windows.Forms.ListBox();
+            this.radioButton_managed = new System.Windows.Forms.RadioButton();
+            this.radioButton_native = new System.Windows.Forms.RadioButton();
+            this.textBox_argument = new System.Windows.Forms.TextBox();
             this.groupBox_dll.SuspendLayout();
             this.tabControl_mode.SuspendLayout();
             this.tabPage_inject.SuspendLayout();
             this.tabPage_load.SuspendLayout();
+            this.tabPage_assemblytype.SuspendLayout();
+            this.groupBox_argument.SuspendLayout();
+            this.groupBox_startmethod.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView_procs
@@ -139,6 +149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_mode.Controls.Add(this.tabPage_inject);
             this.tabControl_mode.Controls.Add(this.tabPage_load);
+            this.tabControl_mode.Controls.Add(this.tabPage_assemblytype);
             this.tabControl_mode.Location = new System.Drawing.Point(12, 12);
             this.tabControl_mode.Name = "tabControl_mode";
             this.tabControl_mode.SelectedIndex = 0;
@@ -216,6 +227,90 @@
             this.label_exe.TabIndex = 0;
             this.label_exe.Text = "Executable:";
             // 
+            // tabPage_assemblytype
+            // 
+            this.tabPage_assemblytype.Controls.Add(this.groupBox_argument);
+            this.tabPage_assemblytype.Controls.Add(this.groupBox_startmethod);
+            this.tabPage_assemblytype.Controls.Add(this.radioButton_managed);
+            this.tabPage_assemblytype.Controls.Add(this.radioButton_native);
+            this.tabPage_assemblytype.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_assemblytype.Name = "tabPage_assemblytype";
+            this.tabPage_assemblytype.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_assemblytype.Size = new System.Drawing.Size(441, 245);
+            this.tabPage_assemblytype.TabIndex = 2;
+            this.tabPage_assemblytype.Text = "Assembly Type";
+            this.tabPage_assemblytype.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_argument
+            // 
+            this.groupBox_argument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_argument.Controls.Add(this.textBox_argument);
+            this.groupBox_argument.Location = new System.Drawing.Point(6, 190);
+            this.groupBox_argument.Name = "groupBox_argument";
+            this.groupBox_argument.Size = new System.Drawing.Size(429, 49);
+            this.groupBox_argument.TabIndex = 3;
+            this.groupBox_argument.TabStop = false;
+            this.groupBox_argument.Text = "Argument";
+            // 
+            // groupBox_startmethod
+            // 
+            this.groupBox_startmethod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_startmethod.Controls.Add(this.listBox_method);
+            this.groupBox_startmethod.Location = new System.Drawing.Point(6, 29);
+            this.groupBox_startmethod.Name = "groupBox_startmethod";
+            this.groupBox_startmethod.Size = new System.Drawing.Size(429, 155);
+            this.groupBox_startmethod.TabIndex = 2;
+            this.groupBox_startmethod.TabStop = false;
+            this.groupBox_startmethod.Text = "Start Method";
+            // 
+            // listBox_method
+            // 
+            this.listBox_method.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox_method.FormattingEnabled = true;
+            this.listBox_method.Location = new System.Drawing.Point(6, 21);
+            this.listBox_method.Name = "listBox_method";
+            this.listBox_method.Size = new System.Drawing.Size(417, 121);
+            this.listBox_method.TabIndex = 0;
+            this.listBox_method.SelectedIndexChanged += new System.EventHandler(this.OnDataSelection);
+            // 
+            // radioButton_managed
+            // 
+            this.radioButton_managed.AutoSize = true;
+            this.radioButton_managed.Location = new System.Drawing.Point(90, 6);
+            this.radioButton_managed.Name = "radioButton_managed";
+            this.radioButton_managed.Size = new System.Drawing.Size(126, 17);
+            this.radioButton_managed.TabIndex = 1;
+            this.radioButton_managed.Text = "Managed DLL (.NET)";
+            this.radioButton_managed.UseVisualStyleBackColor = true;
+            this.radioButton_managed.CheckedChanged += new System.EventHandler(this.OnDataSelection);
+            // 
+            // radioButton_native
+            // 
+            this.radioButton_native.AutoSize = true;
+            this.radioButton_native.Checked = true;
+            this.radioButton_native.Location = new System.Drawing.Point(6, 6);
+            this.radioButton_native.Name = "radioButton_native";
+            this.radioButton_native.Size = new System.Drawing.Size(78, 17);
+            this.radioButton_native.TabIndex = 0;
+            this.radioButton_native.TabStop = true;
+            this.radioButton_native.Text = "Native DLL";
+            this.radioButton_native.UseVisualStyleBackColor = true;
+            this.radioButton_native.CheckedChanged += new System.EventHandler(this.OnDLLTypeChanged);
+            // 
+            // textBox_argument
+            // 
+            this.textBox_argument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_argument.Location = new System.Drawing.Point(6, 21);
+            this.textBox_argument.Name = "textBox_argument";
+            this.textBox_argument.Size = new System.Drawing.Size(417, 22);
+            this.textBox_argument.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,6 +331,11 @@
             this.tabPage_inject.ResumeLayout(false);
             this.tabPage_load.ResumeLayout(false);
             this.tabPage_load.PerformLayout();
+            this.tabPage_assemblytype.ResumeLayout(false);
+            this.tabPage_assemblytype.PerformLayout();
+            this.groupBox_argument.ResumeLayout(false);
+            this.groupBox_argument.PerformLayout();
+            this.groupBox_startmethod.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -256,5 +356,12 @@
         private System.Windows.Forms.Button button_exepath;
         private System.Windows.Forms.TextBox textBox_exepath;
         private System.Windows.Forms.Label label_exe;
+        private System.Windows.Forms.TabPage tabPage_assemblytype;
+        private System.Windows.Forms.RadioButton radioButton_managed;
+        private System.Windows.Forms.RadioButton radioButton_native;
+        private System.Windows.Forms.GroupBox groupBox_argument;
+        private System.Windows.Forms.GroupBox groupBox_startmethod;
+        private System.Windows.Forms.ListBox listBox_method;
+        private System.Windows.Forms.TextBox textBox_argument;
     }
 }

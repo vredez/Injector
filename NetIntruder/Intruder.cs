@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace NetIntruder
 {
@@ -9,13 +10,14 @@ namespace NetIntruder
     {
         public static int Intrude(string args)
         {
+            MessageBox.Show(args);
             ThreadPool.QueueUserWorkItem(Run, args);
             return 0;
         }
 
         static void Run(object args)
         {
-
+            
         }
     }
 }
