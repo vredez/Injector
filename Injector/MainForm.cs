@@ -58,7 +58,7 @@ namespace Injector
             }
             else if (sender == button_injectload)
             {
-                if(tabControl_mode.SelectedTab == tabPage_inject) // [Inject]
+                if(button_injectload.Text == "Inject") // [Inject]
                 {
                     //inject the dll into the process
                     Process target_proc = listView_procs.SelectedItems[0].Tag as Process;
@@ -84,14 +84,27 @@ namespace Injector
                     }
                     
                 }
-                else // [Load]
+                else if(button_injectload.Text == "Load") // [Load]
                 {
-                    MessageBox.Show
-                    (
-                        LoadDll(textBox_exepath.Text, textBox_dllpath.Text) ?
-                        "Success!" :
-                        "Failed!"
-                    ); 
+                    if(radioButton_native.Checked) //native load
+                    {
+                        MessageBox.Show
+                        (
+                            LoadDll(textBox_exepath.Text, textBox_dllpath.Text) ?
+                            "Success!" :
+                            "Failed!"
+                        ); 
+                    }
+                    else //managed load
+                    {
+                        string[] method_info = ((string)listBox_method.SelectedItem).Replace("int ", string.Empty).Replace("(string)", string.Empty).Split(new char[] { '.' });
+                        MessageBox.Show
+                        (
+                            LoadManagedDll(textBox_exepath.Text, textBox_dllpath.Text, method_info[0] + "." + method_info[1], method_info[2], textBox_argument.Text) ?
+                            "Success!" :
+                            "Failed!"
+                        ); 
+                    }
                 }            
             }
             else if(sender == button_exepath) // [...] Executable
@@ -276,6 +289,7 @@ namespace Injector
                 if (thread_handle == IntPtr.Zero || thread_id == IntPtr.Zero)
                     return false;
 
+                System.Threading.Thread.Sleep(1000);
 
                 Win32.PostThreadMessage((uint)thread_id, UM_DLL, UIntPtr.Zero, (IntPtr)(cave_address.ToInt32() + bootstrap_dll_name.Length + 2));
                 Win32.PostThreadMessage((uint)thread_id, UM_CLASS, UIntPtr.Zero, (IntPtr)(cave_address.ToInt32() + bootstrap_dll_name.Length + 2 + net_dll_name.Length + 2));
@@ -376,6 +390,41 @@ namespace Injector
 
                 //if the remote thread was created successfully, return true
                 return thread_handle != IntPtr.Zero;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        bool LoadManagedDll(string targetExecutable, string dllPath, string className, string method, string argument)
+        {
+            try
+            {
+                Win32.STARTUPINFO startup_info = new Win32.STARTUPINFO();
+                Win32.PROCESS_INFORMATION proc_info;
+
+                if (!Win32.CreateProcess
+                  (
+                        targetExecutable,
+                        string.Empty,
+                        IntPtr.Zero,
+                        IntPtr.Zero,
+                        false,
+                        Win32.CreationFlags.CREATE_SUSPENDED,
+                        IntPtr.Zero,
+                        Path.GetDirectoryName(targetExecutable),
+                        ref startup_info,
+                        out proc_info
+                  ))
+                    return false;
+
+                if (!InjectManagedDll(Process.GetProcessById(proc_info.dwProcessId), dllPath, className, method, argument))
+                    return false;
+
+                Win32.ResumeThread(proc_info.hThread);
+
+                return true;
             }
             catch
             {

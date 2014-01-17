@@ -1,66 +1,74 @@
 #include <Windows.h>
 #include <mscoree.h>
 
+#pragma comment(lib, "mscoree.lib")
+
 #define UM_DLL WM_USER
 #define UM_CLASS WM_USER + 1
 #define UM_METHOD WM_USER + 2
 #define UM_ARG WM_USER + 3
 
-#pragma comment(lib, "mscoree.lib")
+struct NET_DLL_INFO
+{
+	LPARAM lpDllPath;
+	LPARAM lpClassName;
+	LPARAM lpMethod;
+	LPARAM lpArg;
+};
 
-void LoadNetRuntime();
+typedef NET_DLL_INFO *LP_NET_DLL_INFO;
+
+DWORD WINAPI LoadNetRuntime(LPVOID param);
+void ReceiveDllInfo(LP_NET_DLL_INFO lpDllInfo);
 
 INT APIENTRY DllMain(HMODULE hDLL, DWORD Reason, LPVOID Reserved)
 {
-	switch (Reason)
+	if (Reason == DLL_PROCESS_ATTACH)
 	{
-	case DLL_PROCESS_ATTACH:
-		LoadNetRuntime();
-		break;
+		LP_NET_DLL_INFO lpDllInfo = new NET_DLL_INFO;
+		ReceiveDllInfo(lpDllInfo);
+		CreateThread(NULL, 0, LoadNetRuntime, (LPVOID)lpDllInfo, 0, NULL);
 	}
 
 	return TRUE;
 }
 
-void LoadNetRuntime()
+void ReceiveDllInfo(LP_NET_DLL_INFO lpDllInfo)
 {
-	//wait for the dll name of the netintruder
 	MSG msg;
+	
+	ZeroMemory(lpDllInfo, sizeof(NET_DLL_INFO));
 
-	LPCWSTR dll = NULL;
-	LPCWSTR class_name = NULL;
-	LPCWSTR method = NULL;
-	LPCWSTR arg = NULL;
-
-	while (dll == NULL || class_name == NULL || method == NULL || arg == NULL)
+	//message loop
+	while (lpDllInfo->lpDllPath == NULL || lpDllInfo->lpClassName == NULL || lpDllInfo->lpMethod == NULL || lpDllInfo->lpArg == NULL)
 	{
-		if (PeekMessage(&msg, (HWND)-1, UM_DLL, UM_ARG, PM_REMOVE))
+		if (GetMessage(&msg, (HWND)-1, UM_DLL, UM_ARG))
 		{
 			switch (msg.message)
 			{
 			case UM_DLL:
-				dll = (LPCWSTR)msg.lParam;
+				lpDllInfo->lpDllPath = msg.lParam;
 				break;
 			case UM_CLASS:
-				class_name = (LPCWSTR)msg.lParam;
+				lpDllInfo->lpClassName = msg.lParam;
 				break;
 			case UM_METHOD:
-				method = (LPCWSTR)msg.lParam;
+				lpDllInfo->lpMethod = msg.lParam;
 				break;
 			case UM_ARG:
-				arg = (LPCWSTR)msg.lParam;
+				lpDllInfo->lpArg = msg.lParam;
 				break;
 			}
 		}
 	}
+}
 
-	MessageBox(NULL, dll, L"DLL", MB_OK);
-	MessageBox(NULL, class_name, L"Class", MB_OK);
-	MessageBox(NULL, method, L"Method", MB_OK);
-	MessageBox(NULL, arg, L"Argument", MB_OK);
+DWORD WINAPI LoadNetRuntime(LPVOID param)
+{
+	LP_NET_DLL_INFO lpDllInfo = (LP_NET_DLL_INFO)param;
 
 	ICLRRuntimeHost *clr_host = NULL;
-	
+
 	CorBindToRuntimeEx
 	(
 		NULL,
@@ -68,19 +76,23 @@ void LoadNetRuntime()
 		0,
 		CLSID_CLRRuntimeHost,
 		IID_ICLRRuntimeHost,
-		(PVOID*)&clr_host
+		(LPVOID*)&clr_host
 	);
 
 	clr_host->Start();
 
 	DWORD result;
 
-	clr_host->ExecuteInDefaultAppDomain
+	HRESULT h_result = clr_host->ExecuteInDefaultAppDomain
 	(
-		dll,
-		class_name,
-		method,
-		arg,
+		(LPCWSTR)lpDllInfo->lpDllPath,
+		(LPCWSTR)lpDllInfo->lpClassName,
+		(LPCWSTR)lpDllInfo->lpMethod,
+		(LPCWSTR)lpDllInfo->lpArg,
 		&result
 	);
+
+	delete lpDllInfo;
+
+	return 0;
 }

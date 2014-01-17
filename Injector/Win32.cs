@@ -55,8 +55,8 @@ namespace Injector
         [DllImport("user32", SetLastError = true)]
         public static extern bool PostThreadMessage(uint threadId, uint msg, UIntPtr wParam, IntPtr lParam);
 
-        [DllImport("kernel32", SetLastError = true)]
-        public static extern int GetThreadId(IntPtr threadHandle);
+        [DllImport("kernel32", SetLastError=true)]
+        public static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
 
         [Flags]
         public enum ProcessAccess

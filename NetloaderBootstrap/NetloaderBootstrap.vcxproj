@@ -84,9 +84,6 @@
   <ItemGroup>
     <ClCompile Include="NetloaderBootstrap.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="detours.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
